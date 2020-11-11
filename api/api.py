@@ -21,6 +21,5 @@ def get_content():
     # }
     # response = en.put_item(content_item)
     page = en.get_content_by_language(language='en', component='homepage')
-    print(page['content'])
     return page['content']
 

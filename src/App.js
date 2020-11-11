@@ -7,7 +7,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      content : ''
+      content : '',
+      language : 'en'
     }
 
   }
@@ -15,7 +16,7 @@ class App extends React.Component {
   componentDidMount() {
     fetch('/cms')
     .then(response => response.json())
-    .then(greeting => this.setState({content : greeting.greeting}))
+    .then(content => this.setState({content : content.greeting}))
   }
 
 
