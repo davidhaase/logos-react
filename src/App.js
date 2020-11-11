@@ -1,37 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
+class App extends React.Component {
 
-  const [currentTime, setCurrentTime] = useState(0);
+  constructor (){
+    super();
 
-  useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    });
-  }, []);
+    this.state = {
+      content : ''
+    }
+
+  }
+
+  componentDidMount() {
+    fetch('/cms')
+    .then(response => response.json())
+    .then(greeting => this.setState({content : greeting.greeting}))
+  }
 
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>The current time is {currentTime}.</p>
-      </header>
-    </div>
-  );
+  
+  render () {
+
+    console.log(this.state.content);
+    return (
+      <div>
+        <h1>{this.state.content}</h1>
+      </div>
+    );
+  }
 }
 
 export default App;
