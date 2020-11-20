@@ -1,14 +1,20 @@
 import time
-from flask import Flask
 import json
-
-from dynamo import CMS
+from flask import Flask
+from dynamo import CMS, Translations
 
 app = Flask(__name__)
 
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
+
+@app.route('/translations')
+def get_translations():
+    tr = Translations()
+    return {'list': tr.scan()}
+
+
 
 @app.route('/cms')
 def get_content():

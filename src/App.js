@@ -1,35 +1,23 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
 import './App.css';
 
-class App extends React.Component {
+import TranslatePage from './pages/translate/translate.component';
 
-  constructor (){
-    super();
+function App() {
 
-    this.state = {
-      content : '',
-      language : 'en'
-    }
+  fetch('/translations')
+    .then(response => console.log(response))
 
-  }
-
-  componentDidMount() {
-    fetch('/cms')
-    .then(response => response.json())
-    .then(content => this.setState({content : content.greeting}))
-  }
-
-
-  
-  render () {
-
-    console.log(this.state.content);
-    return (
-      <div>
-        <h1>{this.state.content}</h1>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Switch>
+        <Route exact path='/' component={TranslatePage} />
+      </Switch>
+    </div>
+  );
 }
+
 
 export default App;

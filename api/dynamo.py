@@ -31,6 +31,10 @@ class DynoDB():
 
         return distinct_values
 
+class Translations(DynoDB):
+    def __init__(self, table_name='Translations'):
+        super().__init__(table_name=table_name)
+
 class CMS(DynoDB):
     def __init__(self, table_name='CMS'):
         super().__init__(table_name=table_name)
